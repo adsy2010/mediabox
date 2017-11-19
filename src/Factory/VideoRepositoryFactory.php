@@ -14,7 +14,7 @@ use Interop\Container\Exception\ContainerException;
 use MediaBox\Model\VideoRepository;
 use MediaBox\Model\Video;
 use Zend\Db\Adapter\AdapterInterface;
-use Zend\Hydrator\HydratorInterface;
+
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;

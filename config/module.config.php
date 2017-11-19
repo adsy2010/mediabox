@@ -8,8 +8,6 @@
 
 namespace MediaBox;
 
-use Cars\Model\Model;
-use function Couchbase\defaultDecoder;
 use MediaBox\Factory\MediaBoxControllerFactory;
 use MediaBox\Factory\VideoRepositoryFactory;
 use MediaBox\Model\VideoRepository;

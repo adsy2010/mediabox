@@ -1,0 +1,107 @@
+<?php
+
+$this->headTitle($this->video->getName());
+
+?>
+
+<style>
+    .tags span { padding:4px; line-height: 3em; margin:2px; font-size: 14px;}
+    video { position: relative; top: 0px;}
+
+    .wrapper { margin: 50px; }
+
+</style>
+
+<body>
+<div id="wrapper">
+
+        <div class="panel panel-default">
+            <div class="panel-heading videoTitle">
+
+                <h2 class="text-center"><?= $this->video->getName() ?></h2>
+
+            </div>
+            <div class="panel-body videoBody">
+                <video width="100%" height="auto" controls="" poster="/img/logocentre.png">
+                    <source src="<?= $this->video->getUrl() ?>" type="video/mp4">
+                </video>
+
+                <h4 class="text-center">
+                    <a class="btn btn-info" href="<?= $this->video->getUrl() ?>" download>Download <span class="glyphicon glyphicon-download"></span></a>
+                    <a class="btn btn-info" href="<?= $this->url('mediabox', ['action'=> 'edit', 'id' => $this->video->getId()]) ?>">Edit <span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-info" href="<?= $this->url('mediabox', ['action'=> 'delete', 'id' => $this->video->getId()]) ?>">Delete <span class="glyphicon glyphicon-trash"></span></a>
+                </h4>
+
+                <div class="videoDescription">
+                    <?= $this->video->getDescription(); ?>
+                </div>
+                <hr>
+                <div class="videoMeta">
+                    Duration: <?= $this->video->getDuration() ?><br>
+                    Uploaded on: <?= $this->video->getUploadedOn() ?><br>
+                    Source: <?= $this->video->getFormat() ?>
+                </div>
+                <hr>
+
+                <div class=" tags">
+                    <div>
+                        <label class="h4">Film / TV / Series</label><br>
+                        <span class="label label-primary">film</span>
+                        <span class="label label-primary">tv</span>
+                        <span class="label label-primary">series</span>
+                    </div>
+                    <div>
+                        <label class="h4">Departments</label><br>
+                        <span class="label label-default">english</span>
+                        <span class="label label-default">science</span>
+                        <span class="label label-default">geography</span>
+                        <span class="label label-default">history</span>
+                        <span class="label label-default">re</span>
+                        <span class="label label-default">music</span>
+                        <span class="label label-default">drama</span>
+                        <span class="label label-default">dt</span>
+                        <span class="label label-default">it</span>
+                        <span class="label label-default">maths</span>
+                        <span class="label label-default">mfl</span>
+                        <span class="label label-default">pe</span>
+                    </div>
+                    <div>
+                        <label class="h4">Classification</label><br>
+                        <span class="label label-success">u</span>
+                        <span class="label label-success">pg</span>
+                        <span class="label label-success">12</span>
+                        <span class="label label-success">12a</span>
+                        <span class="label label-success">15</span>
+                        <span class="label label-success">18</span>
+                    </div>
+                    <div>
+                        <label class="h4">Categories</label><br>
+                        <span class="label label-danger">animation</span>
+                        <span class="label label-danger">arts & design</span>
+                        <span class="label label-danger">cameras and techniques</span>
+                        <span class="label label-danger">comedy</span>
+                        <span class="label label-danger">documentary</span>
+                        <span class="label label-danger">experimental</span>
+                        <span class="label label-danger">fashion</span>
+                        <span class="label label-danger">food</span>
+                        <span class="label label-danger">instructionals</span>
+                        <span class="label label-danger">music</span>
+                        <span class="label label-danger">narrative</span>
+                        <span class="label label-danger">personal</span>
+                        <span class="label label-danger">reporting & journalism</span>
+                        <span class="label label-danger">sports</span>
+                        <span class="label label-danger">talks</span>
+                        <span class="label label-danger">travel</span>
+                    </div>
+                    <div>
+                        <label class="h4">Custom tags</label><br>
+                        <span class="label label-warning">custom tags</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

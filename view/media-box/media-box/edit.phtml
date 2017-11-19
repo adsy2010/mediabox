@@ -1,0 +1,126 @@
+
+<style>
+    .tags label { padding:4px;  margin:2px; font-size: 14px;}
+    video { position: relative; top: 0px;}
+    /* Hiding the checkbox, but allowing it to be focused */
+    .badgebox
+    {
+        opacity: 0;
+    }
+
+    .badgebox + .badge
+    {
+        /* Move the check mark away when unchecked */
+        text-indent: -999999px;
+        /* Makes the badge's width stay the same checked and unchecked */
+        width: 27px;
+    }
+
+    .badgebox:focus + .badge
+    {
+        /* Set something to make the badge looks focused */
+        /* This really depends on the application, in my case it was: */
+
+        /* Adding a light border */
+        box-shadow: inset 0px 0px 5px;
+        /* Taking the difference out of the padding */
+    }
+
+    .badgebox:checked + .badge
+    {
+        /* Move the check mark back when checked */
+        text-indent: 0;
+    }
+
+</style>
+
+<body>
+<div id="wrapper">
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3>Edit <?= $this->video->getName() ?></h3></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="comment">Description:</label>
+                    <textarea class="form-control" rows="5" id="comment"><?= $this->video->getDescription() ?></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Source:</label>
+                    <input type="text" class="form-control" id="usr" value="<?= $this->video->getFormat() ?>">
+                </div>
+
+                <div class=" tags">
+                    <div>
+                        <label class="h4">Film / TV / Series</label><br>
+                        <label class="btn btn-primary"><span class="label label-primary">film <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-primary"><span class="label label-primary">tv <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-primary"><span class="label label-primary">series <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                    </div>
+                    <div>
+                        <label class="h4">Departments</label><br>
+                        <label class="btn btn-default"><span class="">english <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">science <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">geography <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">history <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">re <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">music <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">drama <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">dt <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">it <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">maths <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">mfl <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-default"><span class=" ">pe <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                    </div>
+                    <div>
+                        <label class="h4">Classification</label><br>
+                        <label class="btn btn-success"><span class="label label-success">u<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                        <label class="btn btn-success"><span class="label label-success">pg<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                        <label class="btn btn-success"><span class="label label-success">12<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                        <label class="btn btn-success"><span class="label label-success">12a<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                        <label class="btn btn-success"><span class="label label-success">15<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                        <label class="btn btn-success"><span class="label label-success">18<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
+                    </div>
+                    <div>
+                        <label class="h4">Categories</label><br>
+                        <label class="btn btn-danger"><span class="label label-danger">animation  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">arts & design  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">cameras and techniques  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">comedy  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">documentary  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">experimental  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">fashion  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">food  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">instructionals  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">music  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">narrative  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">personal  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">reporting & journalism  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">sports  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">talks<input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <label class="btn btn-danger"><span class="label label-danger">travel<input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                    </div>
+                    <div>
+                        <label class="h4">Custom tags</label><br>
+                        <label class="btn btn-warning"><span class="label label-warning">custom tags <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+
+                        <div class="input-group">
+                            <input size="8" type="text" class="form-control" placeholder="Add custom tags...">
+                            <span class="input-group-btn">
+							<button type="submit" class="btn btn-warning">
+								<span class="glyphicon glyphicon-plus">
+									<span class="sr-only">Add custom tags...</span>
+								</span>
+							</button>
+						</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

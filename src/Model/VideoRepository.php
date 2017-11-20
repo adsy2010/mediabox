@@ -41,9 +41,9 @@ class VideoRepository implements VideoRepositoryInterface
 
     public function findAllVideos()
     {
-        // TODO: Implement findAllVideos() method.
         $sql = new Sql($this->db);
-        $select = $sql->select('videos');
+        $select = $sql->select()->from(array('v' => 'videos'))
+                ->limit(10);
 
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute();
@@ -56,6 +56,28 @@ class VideoRepository implements VideoRepositoryInterface
         $resultSet->initialize($result);
         return $resultSet;
 
+    }
+
+    public function findAllTags()
+    {
+        $sql = new Sql($this->db);
+        $select = $sql
+                ->select(array('t'=>'tags'))
+                ->join(array('tc' => 'tagcategory'), 't.category = tc.id', array('tagCategory'=>'name', 'categoryId' => 'id'))
+                ->columns(array('tagName' => 'name', 'tagId' => 'id'))
+                ->order(array('tagName ASC')
+        );
+
+        $statement = $sql->prepareStatementForSqlObject($select);
+        $result = $statement->execute();
+
+        if (! $result instanceof ResultInterface || ! $result->isQueryResult()) {
+            return [];
+        }
+
+        $resultSet = new HydratingResultSet($this->hydrator,$this->tagPrototype);
+        $resultSet->initialize($result);
+        return $resultSet;
     }
 
     public function findVideoTags($id)
@@ -84,8 +106,14 @@ class VideoRepository implements VideoRepositoryInterface
         $statement = $sql->prepareStatementForSqlObject($select);
         $result = $statement->execute();
 
+        if (! $result instanceof ResultInterface || ! $result->isQueryResult()) {
+            return [];
+        }
 
-
+        $resultSet = new HydratingResultSet($this->hydrator,$this->tagPrototype);
+        $resultSet->initialize($result);
+        return $resultSet;
+        /*
         if (!$result instanceof ResultInterface || !$result->isQueryResult()) {
             throw new RuntimeException(sprintf(
                 'Failed retrieving video tags with video identifier "%s"; unknown database error.',
@@ -104,7 +132,7 @@ class VideoRepository implements VideoRepositoryInterface
             ));
         }
 
-        return $tags;
+        return $tags;*/
     }
 
     public function findVideo($id)

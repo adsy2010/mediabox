@@ -2,6 +2,17 @@
 
 $this->headTitle($this->video->getName());
 
+//make tag iterator buffered
+$tags = $this->tags->buffer();
+$dt = new DateTime();
+$dt->setTimestamp($this->video->getUploadedOn()); //<--- Pass a UNIX TimeStamp
+
+//$time = '00:06:00';
+//$timeInSeconds = strtotime($time) - strtotime('TODAY');
+$timeInSeconds = $this->video->getDuration();
+
+$duration = new DateTime();
+$duration->setTimestamp($timeInSeconds);
 ?>
 
 <style>
@@ -37,69 +48,53 @@ $this->headTitle($this->video->getName());
                 </div>
                 <hr>
                 <div class="videoMeta">
-                    Duration: <?= $this->video->getDuration() ?><br>
-                    Uploaded on: <?= $this->video->getUploadedOn() ?><br>
+                    Duration: <?= $duration->format('H:i:s') ?><br>
+                    Uploaded on: <?= $dt->format('dS F Y'); ?><br>
                     Source: <?= $this->video->getFormat() ?><br>
-                    Tagtest: <?= $this->tags->getTagCategory() ?><br>
-                    Tagtest: <?= $this->tags->getTagName() ?><br>
-                    Tagtest: <?= $this->tags->getCategoryId() ?><br>
-                    Tagtest: <?= $this->tags->getTagId() ?><br>
                 </div>
                 <hr>
 
                 <div class=" tags">
                     <div>
                         <label class="h4">Film / TV / Series</label><br>
-                        <span class="label label-primary">film</span>
-                        <span class="label label-primary">tv</span>
-                        <span class="label label-primary">series</span>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Film / TV / Series'): ?>
+                                <span class="label label-primary"><?= $tag->getTagName() ?></span>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <label class="h4">Departments</label><br>
-                        <span class="label label-default">english</span>
-                        <span class="label label-default">science</span>
-                        <span class="label label-default">geography</span>
-                        <span class="label label-default">history</span>
-                        <span class="label label-default">re</span>
-                        <span class="label label-default">music</span>
-                        <span class="label label-default">drama</span>
-                        <span class="label label-default">dt</span>
-                        <span class="label label-default">it</span>
-                        <span class="label label-default">maths</span>
-                        <span class="label label-default">mfl</span>
-                        <span class="label label-default">pe</span>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Departments'): ?>
+                                <span class="label label-default"><?= $tag->getTagName() ?></span>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <label class="h4">Classification</label><br>
-                        <span class="label label-success">u</span>
-                        <span class="label label-success">pg</span>
-                        <span class="label label-success">12</span>
-                        <span class="label label-success">12a</span>
-                        <span class="label label-success">15</span>
-                        <span class="label label-success">18</span>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Classification'): ?>
+                                <span class="label label-success"><?= $tag->getTagName() ?></span>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <label class="h4">Categories</label><br>
-                        <span class="label label-danger">animation</span>
-                        <span class="label label-danger">arts & design</span>
-                        <span class="label label-danger">cameras and techniques</span>
-                        <span class="label label-danger">comedy</span>
-                        <span class="label label-danger">documentary</span>
-                        <span class="label label-danger">experimental</span>
-                        <span class="label label-danger">fashion</span>
-                        <span class="label label-danger">food</span>
-                        <span class="label label-danger">instructionals</span>
-                        <span class="label label-danger">music</span>
-                        <span class="label label-danger">narrative</span>
-                        <span class="label label-danger">personal</span>
-                        <span class="label label-danger">reporting & journalism</span>
-                        <span class="label label-danger">sports</span>
-                        <span class="label label-danger">talks</span>
-                        <span class="label label-danger">travel</span>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Categories'): ?>
+                                <span class="label label-danger"><?= $tag->getTagName() ?></span>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+
                     </div>
                     <div>
                         <label class="h4">Custom tags</label><br>
-                        <span class="label label-warning">custom tags</span>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Custom tags'): ?>
+                                <span class="label label-warning"><?= $tag->getTagName() ?></span>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

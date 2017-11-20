@@ -1,4 +1,7 @@
-
+<?php
+$this->headTitle("Editing ".$this->video->getName());
+$tags = $this->tags->buffer();
+?>
 <style>
     .tags label { padding:4px;  margin:2px; font-size: 14px;}
     video { position: relative; top: 0px;}
@@ -41,6 +44,12 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3>Edit <?= $this->video->getName() ?></h3></div>
             <div class="panel-body">
+
+                <div class="form-group">
+                    <label for="comment">Title:</label>
+                    <input type="text" class="form-control" id="usr" value="<?= $this->video->getName() ?>">
+                </div>
+
                 <div class="form-group">
                     <label for="comment">Description:</label>
                     <textarea class="form-control" rows="5" id="comment"><?= $this->video->getDescription() ?></textarea>
@@ -52,59 +61,46 @@
                 </div>
 
                 <div class=" tags">
+
+
+
                     <div>
                         <label class="h4">Film / TV / Series</label><br>
-                        <label class="btn btn-primary"><span class="label label-primary">film <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-primary"><span class="label label-primary">tv <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-primary"><span class="label label-primary">series <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Film / TV / Series'): ?>
+                                <label class="btn btn-primary"><span class=""><?= $tag->getTagName() ?> <input type="checkbox" id="tag<?= $tag->getTagName() ?>" name="selectedTags[]" class="badgebox" value="<?= $tag->getTagId() ?>"><span class="badge">&check;</span></span></label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <label class="h4">Departments</label><br>
-                        <label class="btn btn-default"><span class="">english <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">science <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">geography <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">history <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">re <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">music <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">drama <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">dt <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">it <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">maths <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">mfl <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-default"><span class=" ">pe <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Departments'): ?>
+                                <label class="btn btn-default"><span class="""><?= $tag->getTagName() ?> <input type="checkbox" id="tag<?= $tag->getTagName() ?>" name="selectedTags[]" class="badgebox" value="<?= $tag->getTagId() ?>"><span class="badge">&check;</span></span></label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                     <div>
                         <label class="h4">Classification</label><br>
-                        <label class="btn btn-success"><span class="label label-success">u<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                        <label class="btn btn-success"><span class="label label-success">pg<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                        <label class="btn btn-success"><span class="label label-success">12<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                        <label class="btn btn-success"><span class="label label-success">12a<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                        <label class="btn btn-success"><span class="label label-success">15<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                        <label class="btn btn-success"><span class="label label-success">18<input type="radio" name="danger" class="badgebox"><span class="badge">&#9679;</span></span></label>
-                    </div>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Classification'): ?>
+                                <label class="btn btn-success"><span class="""><?= $tag->getTagName() ?> <input type="checkbox" id="tag<?= $tag->getTagName() ?>" name="selectedTags[]" class="badgebox" value="<?= $tag->getTagId() ?>"><span class="badge">&check;</span></span></label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>    </div>
                     <div>
                         <label class="h4">Categories</label><br>
-                        <label class="btn btn-danger"><span class="label label-danger">animation  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">arts & design  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">cameras and techniques  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">comedy  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">documentary  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">experimental  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">fashion  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">food  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">instructionals  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">music  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">narrative  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">personal  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">reporting & journalism  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">sports  <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">talks<input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                        <label class="btn btn-danger"><span class="label label-danger">travel<input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-                    </div>
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Categories'): ?>
+                                <label class="btn btn-danger"><span class="""><?= $tag->getTagName() ?> <input type="checkbox" id="tag<?= $tag->getTagName() ?>" name="selectedTags[]" class="badgebox" value="<?= $tag->getTagId() ?>"><span class="badge">&check;</span></span></label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>                        </div>
                     <div>
                         <label class="h4">Custom tags</label><br>
-                        <label class="btn btn-warning"><span class="label label-warning">custom tags <input type="checkbox" id="danger" class="badgebox"><span class="badge">&check;</span></span></label>
-
+                        <?php foreach ($tags as $tag): ?>
+                            <?php if($tag->getTagCategory() == 'Custom tags'): ?>
+                                <label class="btn btn-warning"><span class="""><?= $tag->getTagName() ?> <input type="checkbox" id="tag<?= $tag->getTagName() ?>" name="selectedTags[]" class="badgebox" value="<?= $tag->getTagId() ?>"><span class="badge">&check;</span></span></label>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                         <div class="input-group">
                             <input size="8" type="text" class="form-control" placeholder="Add custom tags...">
                             <span class="input-group-btn">
@@ -113,8 +109,11 @@
 									<span class="sr-only">Add custom tags...</span>
 								</span>
 							</button>
-						</span>
+						    </span>
                         </div>
+                        <br>
+                        <button type="submit" class="btn btn-success">Save changes</button>
+                        <a href="<?= $this->url('mediabox', ['action' => 'video', 'id'=> $this->video->getId()]) ?>" class="btn btn-danger">Cancel changes</a>
 
                     </div>
 

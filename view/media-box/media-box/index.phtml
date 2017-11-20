@@ -1,3 +1,40 @@
-Test!
+<?php
 
-This is index
+$videos = $this->videos->buffer();
+$videoCount = count($videos);
+
+
+?>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Thumbnail</th>
+            <th>Name</th>
+            <th>Duration</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($videos as $video): ?>
+            <?php
+            $timeInSeconds = $video->getDuration();
+            $duration = new DateTime();
+            $duration->setTimestamp($timeInSeconds);
+            ?>
+            <tr>
+                <td><a><img src="https://mountbatten.hants.sch.uk/tools/mediabox/image.php?img=thumbnail.png&size=80&bgcol=#0000000" alt=""></a></td>
+                <td style="vertical-align: middle;"><h2><a href="<?= $this->url('mediabox', ['action' => 'video', 'id' => $video->getId()]) ?>"><?= $video->getName() ?></a></h2></td>
+                <td style="vertical-align: middle;"><?= $duration->format("H:i:s") ?></td>
+            </tr>
+        <?php endforeach; ?>
+
+        <?php if($videoCount == 0): ?>
+        <tr>
+            <td colspan="3">There are no videos in the database at this time</td>
+        </tr>
+        <?php endif; ?>
+
+
+        </tbody>
+    </table>
+</div>

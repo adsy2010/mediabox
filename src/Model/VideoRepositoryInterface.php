@@ -12,6 +12,7 @@ namespace MediaBox\Model;
 interface VideoRepositoryInterface
 {
     public function findAllVideos();
+    public function findVideoTags($id);
     public function findVideo($id);
 
 }

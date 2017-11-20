@@ -39,7 +39,7 @@ return [
             'mediabox' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/mediabox[/:action[/:id]]',
+                    'route' => '/tools/mediabox[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z0-9_-]*',
                         'id' => '[0-9]+'

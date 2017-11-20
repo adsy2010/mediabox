@@ -11,10 +11,12 @@ namespace MediaBox\Factory;
 
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
+use MediaBox\Model\Tag;
 use MediaBox\Model\VideoRepository;
 use MediaBox\Model\Video;
 use Zend\Db\Adapter\AdapterInterface;
 
+use Zend\Db\Sql\TableIdentifier;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
@@ -42,7 +44,8 @@ class VideoRepositoryFactory implements FactoryInterface
         return new VideoRepository(
             $container->get(AdapterInterface::class),
                 new ReflectionHydrator(),
-                new Video('','','','','','','','')
+                new Video('','','','','','','',''),
+                new Tag('','','','')
         );
     }
 }

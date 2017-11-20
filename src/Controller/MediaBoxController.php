@@ -70,12 +70,15 @@ class MediaBoxController extends AbstractActionController
 
         try{
             $video = $this->videoRepository->findVideo($id);
+            $tags = $this->videoRepository->findVideoTags($id);
         } catch (InvalidArgumentException $exception){
-            return $this->redirect()->toRoute('mediabox');
+            die($exception->getMessage());
+            //return $this->redirect()->toRoute('mediabox');
         }
 
         return new ViewModel([
-            'video' => $video
+            'video' => $video,
+            'tags' => $tags
         ]);
 
         //return ['video' => $video];

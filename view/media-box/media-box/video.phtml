@@ -39,7 +39,11 @@ $this->headTitle($this->video->getName());
                 <div class="videoMeta">
                     Duration: <?= $this->video->getDuration() ?><br>
                     Uploaded on: <?= $this->video->getUploadedOn() ?><br>
-                    Source: <?= $this->video->getFormat() ?>
+                    Source: <?= $this->video->getFormat() ?><br>
+                    Tagtest: <?= $this->tags->getTagCategory() ?><br>
+                    Tagtest: <?= $this->tags->getTagName() ?><br>
+                    Tagtest: <?= $this->tags->getCategoryId() ?><br>
+                    Tagtest: <?= $this->tags->getTagId() ?><br>
                 </div>
                 <hr>
 

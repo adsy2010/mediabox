@@ -1,6 +1,11 @@
 <?php
 $this->headTitle("Add a video");
 $tags = $this->tags->buffer();
+
+$name = $form->get('name');
+$url = $form->get('url');
+$description = $form->get('description');
+$format = $form->get('format');
 ?>
 
 <style>
@@ -44,14 +49,19 @@ $tags = $this->tags->buffer();
         <div class="panel panel-default">
             <div class="panel-heading"><h3>Add a video</h3></div>
             <div class="panel-body">
+                <?php
+                echo $this->form()->openTag($form);
+                ?>
                 <div class="form-group">
                     <label for="comment">Video Name:</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" name="name">
+                    <?= $this->formElementErrors()->render($name, ['class' => 'help-block']) ?>
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Video URL:</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" name="url">
+                    <?= $this->formElementErrors()->render($url, ['class' => 'help-block']) ?>
                 </div>
 
                 <div class="form-group">
@@ -61,12 +71,14 @@ $tags = $this->tags->buffer();
 
                 <div class="form-group">
                     <label for="comment">Description:</label>
-                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                    <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+                    <?= $this->formElementErrors()->render($description, ['class' => 'help-block']) ?>
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Source:</label>
-                    <input type="text" class="form-control" id="usr">
+                    <input type="text" class="form-control" id="source" name="format">
+                    <?= $this->formElementErrors()->render($format, ['class' => 'help-block']) ?>
                 </div>
 
                 <div class=" tags">
@@ -119,12 +131,14 @@ $tags = $this->tags->buffer();
 						    </span>
                         </div>
                         <br>
-                        <button type="submit" class="btn btn-success">Add to MediaBox</button>
+                        <input type="submit" class="btn btn-success" value="Add to MediaBox">
                         <button type="cancel" class="btn btn-danger">Cancel</button>
-
                     </div>
 
                 </div>
+                <?php
+                echo $this->form()->openTag($form);
+                ?>
 
             </div>
         </div>

@@ -47,17 +47,17 @@ $tags = $this->tags->buffer();
 
                 <div class="form-group">
                     <label for="comment">Title:</label>
-                    <input type="text" class="form-control" id="usr" value="<?= $this->video->getName() ?>">
+                    <input type="text" class="form-control" id="name" value="<?= $this->video->getName() ?>">
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Description:</label>
-                    <textarea class="form-control" rows="5" id="comment"><?= $this->video->getDescription() ?></textarea>
+                    <textarea class="form-control" rows="5" id="description"><?= $this->video->getDescription() ?></textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="comment">Source:</label>
-                    <input type="text" class="form-control" id="usr" value="<?= $this->video->getFormat() ?>">
+                    <input type="text" class="form-control" id="format" value="<?= $this->video->getFormat() ?>">
                 </div>
 
                 <div class=" tags">

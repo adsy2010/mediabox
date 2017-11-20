@@ -9,6 +9,7 @@
 namespace MediaBox\Controller;
 
 use InvalidArgumentException;
+use MediaBox\Form\VideoForm;
 use MediaBox\Model\Video;
 use MediaBox\Model\VideoRepositoryInterface;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -75,7 +76,7 @@ class MediaBoxController extends AbstractActionController
             else{
                 return $this->redirect()->toRoute('mediabox', ['action'=>'video', 'id' => $id]);
             }
-            
+
             return $this->redirect()->toRoute('mediabox');
             // Redirect to list of albums
 
@@ -100,8 +101,21 @@ class MediaBoxController extends AbstractActionController
             return $this->redirect()->toRoute('mediabox');
         }
 
+        $form = new VideoForm();
+        $form->get('submit')->setAttribute('value', 'add');
+
+        //testing
+        $request = $this->getRequest();
+
+        if (! $request->isPost()) {
+            return ['tags' => $tags, 'form' => $form];
+        }
+            //die(json_encode($request->getContent()));
+            //$del = $request->getPost();//'del', 'No');
+
         return new ViewModel([
-            'tags' => $tags
+            'tags' => $tags,
+            'form' => $form
         ]);
     }
 

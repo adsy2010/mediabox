@@ -23,7 +23,7 @@ $videoCount = count($videos);
             ?>
             <tr>
                 <td><a><img src="https://mountbatten.hants.sch.uk/tools/mediabox/image.php?img=thumbnail.png&size=80&bgcol=#0000000" alt=""></a></td>
-                <td style="vertical-align: middle;"><h2><a href="<?= $this->url('mediabox', ['action' => 'video', 'id' => $video->getId()]) ?>"><?= $video->getName() ?></a></h2></td>
+                <td style="vertical-align: middle;"><h2><a href="<?= $this->url('mediabox/video', ['id' => $video->getId()]) ?>"><?= $video->getName() ?></a></h2></td>
                 <td style="vertical-align: middle;"><?= $duration->format("H:i:s") ?></td>
             </tr>
         <?php endforeach; ?>

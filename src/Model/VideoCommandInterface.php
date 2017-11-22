@@ -9,10 +9,10 @@
 namespace MediaBox\Model;
 
 
-interface VideoCommandRepositoryInterface
+
+interface VideoCommandInterface
 {
     public function insertVideo(Video $video);
     public function updateVideo(Video $video);
     public function deleteVideo(Video $video);
-
 }

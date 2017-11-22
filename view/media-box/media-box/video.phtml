@@ -39,8 +39,8 @@ $duration->setTimestamp($timeInSeconds);
 
                 <h4 class="text-center">
                     <a class="btn btn-info" href="<?= $this->video->getUrl() ?>" download>Download <span class="glyphicon glyphicon-download"></span></a>
-                    <a class="btn btn-info" href="<?= $this->url('mediabox', ['action'=> 'edit', 'id' => $this->video->getId()]) ?>">Edit <span class="glyphicon glyphicon-pencil"></span></a>
-                    <a class="btn btn-info" href="<?= $this->url('mediabox', ['action'=> 'delete', 'id' => $this->video->getId()]) ?>">Delete <span class="glyphicon glyphicon-trash"></span></a>
+                    <a class="btn btn-info" href="<?= $this->url('mediabox/edit', ['id' => $this->video->getId()]) ?>">Edit <span class="glyphicon glyphicon-pencil"></span></a>
+                    <a class="btn btn-info" href="<?= $this->url('mediabox/delete', ['id' => $this->video->getId()]) ?>">Delete <span class="glyphicon glyphicon-trash"></span></a>
                 </h4>
 
                 <div class="videoDescription">

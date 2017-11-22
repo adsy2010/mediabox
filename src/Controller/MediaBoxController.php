@@ -38,24 +38,6 @@ class MediaBoxController extends AbstractActionController
         ]);
     }
 
-    public function editAction()
-    {
-        //same as view at the moment
-        $id = $this->params()->fromRoute('id');
-
-        try{
-            $video = $this->videoRepository->findVideo($id);
-            $tags = $this->videoRepository->findAllTags();
-        } catch (InvalidArgumentException $exception){
-            return $this->redirect()->toRoute('mediabox');
-        }
-
-        return new ViewModel([
-            'video' => $video,
-            'tags' => $tags
-        ]);
-    }
-
     public function deleteAction()
     {
         $id = $this->params()->fromRoute('id', 0);

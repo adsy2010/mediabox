@@ -48,9 +48,9 @@ $duration->setTimestamp($timeInSeconds);
                 </div>
                 <hr>
                 <div class="videoMeta">
-                    Duration: <?= $duration->format('H:i:s') ?><br>
-                    Uploaded on: <?= $dt->format('dS F Y'); ?><br>
-                    Source: <?= $this->video->getFormat() ?><br>
+                    <label>Duration:</label> <?= $duration->format('H:i:s') ?><br>
+                    <label>Uploaded on:</label> <?= $dt->format('dS F Y'); ?><br>
+                        <label>Source:</label> <?= $this->video->getFormat() ?><br>
                 </div>
                 <hr>
 

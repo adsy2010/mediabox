@@ -21,6 +21,7 @@ return [
         ],
         'factories' => [
             //VideoRepository::class => InvokableFactory::class,
+            'videonav' => Zend\Navigation\Service\DefaultNavigationFactory::class,
             Model\VideoRepository::class => Factory\VideoRepositoryFactory::class,
             Model\VideoCommand::class => Factory\VideoCommandFactory::class
         ]
@@ -65,6 +66,16 @@ return [
                             ],
                         ],
                     ],
+                    'add' => [
+                        'type' => Segment::class,
+                        'options' => [
+                            'route' => '/add',
+                            'defaults' => [
+                                'controller' => Controller\WriteController::class,
+                                'action' => 'add'
+                            ]
+                        ]
+                    ],
                     'edit' => [
                         'type' => Segment::class,
                         'options' => [
@@ -96,7 +107,40 @@ return [
         ]
     ],
 
+    'navigation' => [
+        'default' => [
+            [
+                'label' => 'Home',
+                'route' => 'home',
+            ],
+            [
+                'label' => 'Video Management',
+                'route' => 'mediabox',
+                'pages' => [
+                    [
+                        'label'  => 'Add',
+                        'route'  => 'mediabox/add',
+                        'action' => 'add',
+                    ]
+                ],
+            ],
+            [
+                'label' => 'Departments',
+                'route' => 'mediabox',
+                'pages' => [
+                    [
+                        'label'  => 'Add',
+                        'route'  => 'mediabox/add',
+                        'action' => 'add',
+                    ]
+                ],
+            ],
+        ],
+    ],
     'view_manager' => [
+        'template_map' => [
+            'layout/layout' => __DIR__ . '/../view/media-box/layout.phtml'
+        ],
         'template_path_stack' => [
             __DIR__ . '/../view'
         ]

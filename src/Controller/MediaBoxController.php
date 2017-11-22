@@ -40,65 +40,12 @@ class MediaBoxController extends AbstractActionController
 
     public function deleteAction()
     {
-        $id = $this->params()->fromRoute('id', 0);
 
-        if(!$id){
-            return $this->redirect()->toRoute('mediabox');
-        }
-
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $del = $request->getPost('del', 'No');
-
-            if ($del == 'Yes') {
-                $id = (int) $request->getPost('id');
-                //$this->table->deleteAlbum($id);
-
-            }
-            else{
-                return $this->redirect()->toRoute('mediabox', ['action'=>'video', 'id' => $id]);
-            }
-
-            return $this->redirect()->toRoute('mediabox');
-            // Redirect to list of albums
-
-        }
-
-        try{
-            $video = $this->videoRepository->findVideo($id);
-        } catch (InvalidArgumentException $exception){
-            return $this->redirect()->toRoute('mediabox');
-        }
-
-        return new ViewModel([
-            'video' => $video
-        ]);
     }
 
     public function addAction()
     {
-        try{
-            $tags = $this->videoRepository->findAllTags();
-        } catch (InvalidArgumentException $exception){
-            return $this->redirect()->toRoute('mediabox');
-        }
 
-        $form = new VideoForm();
-        $form->get('submit')->setAttribute('value', 'add');
-
-        //testing
-        $request = $this->getRequest();
-
-        if (! $request->isPost()) {
-            return ['tags' => $tags, 'form' => $form];
-        }
-            //die(json_encode($request->getContent()));
-            //$del = $request->getPost();//'del', 'No');
-
-        return new ViewModel([
-            'tags' => $tags,
-            'form' => $form
-        ]);
     }
 
     public function videoAction()

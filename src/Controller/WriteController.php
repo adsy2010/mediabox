@@ -26,6 +26,31 @@ class WriteController extends AbstractActionController
         $this->videoRepository = $videoRepository;
     }
 
+    public function addAction()
+    {
+        try{
+            $tags = $this->videoRepository->findAllTags();
+        } catch (InvalidArgumentException $exception){
+            return $this->redirect()->toRoute('mediabox');
+        }
+
+        $form = new VideoForm();
+        $form->get('submit')->setAttribute('value', 'add');
+
+        //testing
+        $request = $this->getRequest();
+
+        if (! $request->isPost()) {
+            return ['tags' => $tags, 'form' => $form];
+        }
+
+
+        return new ViewModel([
+            'tags' => $tags,
+            'form' => $form
+        ]);
+    }
+
     public function editAction()
     {
         //same as view at the moment
